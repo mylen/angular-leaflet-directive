@@ -18,6 +18,9 @@ angular.module("leaflet-directive").directive('controls', function ($log, leafle
                 if (isDefined(L.Control.Draw) && isDefined(controls.draw.edit)) {
                     var drawnItems = new L.FeatureGroup();
                     map.addLayer(drawnItems);
+
+                    // this will add the edit buttons to the toolbar
+                    controls.draw.options.edit = { featureGroup: drawnItems };
                 }
                 if (isDefined(L.Control.Draw) && isDefined(controls.draw)) {
                     var drawControl = new L.Control.Draw(controls.draw.options);

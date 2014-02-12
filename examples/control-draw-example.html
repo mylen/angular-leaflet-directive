@@ -18,12 +18,28 @@
                 },
                 controls: {
                     draw: {
+                        options: {
+                            draw: {
+                                polyline: {
+                                    shapeOptions: {
+                                        color: '#0000ff',
+                                        weight: 8
+                                    }
+                                },
+                                polygon: false,
+                                circle: false, 
+                                rectangle: false
+                            }
+                        },
+                        edit: {}                
                     }
                 }
            });
            leafletData.getMap().then(function(map) {
                map.on('draw:created', function (e) {
-                   var layer = e.layer;
+                   var type = e.layerType,
+                   layer = e.layer;
+                   map.addLayer(layer);
                    console.log(JSON.stringify(layer.toGeoJSON()));
                });
            });
